@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'de.johni0702.reproducible-builds'
+
+group = 'de.johni0702.gradle'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+jar {
+    baseName 'gradle-reproducible-builds-plugin'
+}
+
