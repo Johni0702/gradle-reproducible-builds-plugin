@@ -12,8 +12,7 @@ class ReproducibleBuildsPlugin implements Plugin<Project> {
     void apply(Project project) {
         project.extensions.create("reproducibleBuilds", ReproducibleBuildsExtension)
 
-        def shadowJar = project.tasks.findByPath ':shadowJar'
-        if (shadowJar != null) project.reproducibleBuilds.repackAfter shadowJar
+        project.tasks.all { if (it.path == ':shadowJar') project.reproducibleBuilds.repackAfter it }
 
         project.afterEvaluate {
             project.tasks.withType(AbstractArchiveTask) {
